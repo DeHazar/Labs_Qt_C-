@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>806</width>
+    <height>776</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>0</y>
+      <width>641</width>
+      <height>141</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Дан двумерный массив размером &lt;span style=&quot; font-family:'Courier New';&quot;&gt;n*m&lt;/span&gt;. Массив считан из файла&lt;/p&gt;&lt;p&gt;1.&lt;span style=&quot; font-family:'Times New Roman'; font-size:7pt;&quot;/&gt;Заменить все элементы первых трех столбцов на их квадраты. &lt;/p&gt;&lt;p&gt;2.&lt;span style=&quot; font-family:'Times New Roman'; font-size:7pt;&quot;/&gt;Вставить после каждой нечетной строки первую строку. &lt;/p&gt;&lt;p&gt;3.&lt;span style=&quot; font-family:'Times New Roman'; font-size:7pt;&quot;/&gt;Удалить все столбцы, в которых первый элемент больше последнего, &lt;/p&gt;&lt;p&gt;4.&lt;span style=&quot; font-family:'Times New Roman'; font-size:7pt;&quot;/&gt;Поменять местами средние строки с первой и последней &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="gridLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>140</y>
+      <width>781</width>
+      <height>551</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="1" column="0">
+      <widget class="QTableWidget" name="tableWidget"/>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLabel" name="label_3">
+       <property name="text">
+        <string>Задание 2</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>Задание 1</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QTableWidget" name="tableWidget_2"/>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="label_4">
+       <property name="text">
+        <string>Задание 3</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QLabel" name="label_5">
+       <property name="text">
+        <string>Задание 4</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="0" colspan="2">
+      <widget class="QLabel" name="label_6">
+       <property name="text">
+        <string>Исходный массив</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QTableWidget" name="tableWidget_3"/>
+     </item>
+     <item row="3" column="1">
+      <widget class="QTableWidget" name="tableWidget_4"/>
+     </item>
+     <item row="5" column="0" colspan="2">
+      <widget class="QTableWidget" name="tableWidget_5"/>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>806</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu_4">
+    <property name="title">
+     <string>Лабораторная работа №4</string>
+    </property>
+   </widget>
+   <addaction name="menu_4"/>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>
