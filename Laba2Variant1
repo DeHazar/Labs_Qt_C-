@@ -1,0 +1,153 @@
+#include "mainwindow.h"
+#include "ui_mainwindow.h"
+
+MainWindow::MainWindow(QWidget *parent) :
+    QMainWindow(parent),
+    ui(new Ui::MainWindow)
+{
+    ui->setupUi(this);
+
+    connect(ui->pushButton_2,SIGNAL(clicked()),this,SLOT(task1())); // Связываем кнопки  с методами
+
+    QPushButton *button = ui->pushButton;
+    connect(button,SIGNAL(clicked()),this,SLOT(calculate_for_N()));
+    connect(button,SIGNAL(clicked()),this,SLOT(calcute_for_EPS()));
+
+    task3();
+}
+
+MainWindow::~MainWindow()
+{
+    delete ui;
+}
+
+void MainWindow::task1(){
+    ui->tableWidget->setColumnCount(2);     //количество Столбцов
+    ui->tableWidget->setRowCount(20);       //колво строк
+
+    QTableWidgetItem *header1 = new QTableWidgetItem("x");//Заголовок первого столбца
+    ui->tableWidget->setHorizontalHeaderItem(0,header1);    //Установка первого столбца
+    QTableWidgetItem * header2 = new QTableWidgetItem("y");
+    ui->tableWidget->setHorizontalHeaderItem(1,header2);
+
+    double a = ui->lineEdit_1->text().toDouble();       //считывание лайнЭдита с формы ,получение с него текста и перевод его в число
+    double b = ui->lineEdit_8->text().toDouble();
+    double result = 0;
+    double x=0;
+
+    for(int i= 0;i<20;i++){
+        if(x>=1 && x<=2){
+            result =a*pow(x,2*log(x));  //pow возведение в степень
+        }else if(x<1){
+            result =1;
+        }else
+        {
+        result = exp(a*x)*cos(b*x);
+        }
+
+         QTableWidgetItem *x_meaning = new QTableWidgetItem(QString::number(x));        //QString::number(x) - переводит х в строку
+         QTableWidgetItem *y_meaning= new QTableWidgetItem(QString::number(result));
+
+         ui->tableWidget->setItem(i,0,x_meaning);       //вывод в таблицу
+         ui->tableWidget->setItem(i,1,y_meaning);
+         x=x+0.15;
+    }
+}
+
+
+
+double factorial(int i);
+
+void MainWindow::calculate_for_N()  //расчет суммы ряда
+{
+    double sum=0;
+    int k = ui->lineEdit->text().toInt();
+    for(int i =1;i<=k;i++){
+        sum+=pow(i,4)/factorial(i);
+    }
+
+    ui->lineEdit_4->setText(QString::number(sum));
+}
+
+double factorial(int i) //факториал рекусрсивный
+{
+    if(i<2){
+        return 1;
+    }
+    else {
+        return i*factorial(i-1);
+    }
+}
+
+void MainWindow::calcute_for_EPS()      //расчет с точностью EPS
+{
+    double EPS = ui->lineEdit_2->text().toDouble();
+    double sum =0;
+    double last=0;
+    double current=0;
+    int k=1;
+
+    current =   pow(k,4)/factorial(k);
+    sum+=current;
+    k++;
+
+    do{
+       last = current;
+       current =  pow(k,4)/factorial(k);
+       sum= sum + current;
+       k++;
+    }
+    while(fabs(current -last)>EPS);     //fabs() - модуль для чисел с плавающей точкой
+
+
+    ui->lineEdit_3->setText(QString::number(k-1));
+    ui->lineEdit_5->setText(QString::number(sum));
+}
+
+QStringList list;// созджаем список
+
+void MainWindow::task3()
+{
+    connect(ui->pushButton_3,SIGNAL(clicked()),this,SLOT(add()));
+    connect((ui->pushButton_4),SIGNAL(clicked()),this,SLOT(stop()));
+}
+
+void MainWindow::add()  //Метод для добавки чисел
+{
+    int sum=0;
+    int count =0;
+     list.push_back(ui->lineEdit_6->text());
+
+    for(int i =0;i<list.length();i++)
+    {
+        if(list[i].toInt()<0)
+        {
+            sum+=list[i].toInt();
+            count++;
+        }
+    }
+    if(sum<-1000)
+    {
+        int average = sum/count;
+        ui->lineEdit_7->setText(QString::number(average));
+    }
+
+
+}
+
+void MainWindow::stop()     //метод при остановке
+{
+    int sum=0;
+    int count =0;
+    for(int i =0;i<list.length();i++)
+    {
+        if(list[i].toInt()<0)
+        {
+            sum+=list[i].toInt();
+            count++;
+        }
+    }
+
+   int average = sum/count;
+   ui->lineEdit_7->setText(QString::number(average));
+}
