@@ -1,0 +1,104 @@
+#include "mainwindow.h"
+#include "ui_mainwindow.h"
+
+MainWindow::MainWindow(QWidget *parent) :
+    QMainWindow(parent),
+    ui(new Ui::MainWindow)
+{
+    ui->setupUi(this);
+    connect(ui->pushButton,SIGNAL(clicked()),this,SLOT(task1()));
+    connect(ui->pushButton_2,SIGNAL(clicked()),this,SLOT(task2()));
+    connect(ui->pushButton_3,SIGNAL(clicked()),this,SLOT(task3()));
+}
+
+MainWindow::~MainWindow()
+{
+    delete ui;
+}
+
+        //Заполняет массив числами
+        //array - массив который необходимо заполнить
+        //size - размер массива
+        //используется метод ранд,который генерирует числа от -25 до 25(на самом деле до 24 кажется)
+
+void fill_array(int array[],int size)
+{
+    for(int i = 0;i<size;i++)
+    {
+        array[i]=rand()%50-25;
+    }
+}
+
+        //Метод вывод массив в форму
+        //line - ссылка на элемент на форме
+        //array - массив который необходимо вывести
+        //size - размер массива
+void MainWindow::print_array(QLineEdit *line,int array[],int size)
+{
+    QString str;
+    for(int i = 0;i<size;i++)
+    {
+     str.append(QString::number(array[i])).append(" ");
+    }
+    line->setText(str);
+}
+
+
+void MainWindow::task1()
+{
+    int size = ui->lineEdit->text().toInt();
+    int array[size];
+    fill_array(array,size);
+    print_array(ui->lineEdit_2,array,size);
+
+//    Начало задания один
+
+    for(int i = 0;i<size;i++)
+    {
+        if(array[i]%5==0)
+        {
+          array[i]=0;
+          break;        // Первый элемент кратный 5 заменяем нулем и останавливаем цикл
+        }
+    }
+
+
+    print_array(ui->lineEdit_3,array,size);
+}
+
+void MainWindow::task2()
+{
+    int size = ui->lineEdit_4->text().toInt();  //Считываем текст с лайнедит и переводим его в целочисленное число
+    int array[size];
+    fill_array(array,size); // заполняем массив
+    print_array(ui->lineEdit_5,array,size);
+
+    for(int i =0;i<size;i++)
+    {
+        if((i+1)%2!=0) //Если индекс нечетный то делаем это
+        {
+             array[i]=pow((i+1),2);
+        }
+    }
+     print_array(ui->lineEdit_6,array,size);
+}
+void MainWindow::task3()
+{
+    int size = ui->lineEdit_7->text().toInt();
+    int array[size];
+    fill_array(array,size);
+    print_array(ui->lineEdit_8,array,size);
+
+    for(int i = 0;i<size;i++)
+    {
+        if(i%2!=0)  //если четный
+        {
+            array[i]=pow(array[i],2);
+        }
+        else        //если нечетный
+            array[i]=array[i]/(i+1);
+    }
+    print_array(ui->lineEdit_9,array,size);
+}
+
+
